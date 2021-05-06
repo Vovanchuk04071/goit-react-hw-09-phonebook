@@ -27,10 +27,10 @@ export const register = credentials => async dispatch => {
     token.set(data.token);
 
     dispatch(registerSuccess(data));
-
-    dispatch(changeLoading(false));
   } catch (error) {
     dispatch(fetchError(error.message));
+  } finally {
+    dispatch(changeLoading(false));
   }
 };
 
@@ -42,9 +42,10 @@ export const login = credentials => async dispatch => {
     token.set(data.token);
 
     dispatch(loginSuccess(data));
-    dispatch(changeLoading(false));
   } catch (error) {
     dispatch(fetchError(error.message));
+  } finally {
+    dispatch(changeLoading(false));
   }
 };
 
@@ -56,13 +57,16 @@ export const logout = () => async dispatch => {
 
     token.unset();
     dispatch(logoutSuccess());
-    dispatch(changeLoading(false));
   } catch (error) {
     dispatch(fetchError(error.message));
+  } finally {
+    dispatch(changeLoading(false));
   }
 };
 
 export const getCurrentUser = () => async (dispatch, getState) => {
+  dispatch(changeLoading(true));
+
   const {
     auth: { token: persistedToken },
   } = getState();
@@ -72,13 +76,13 @@ export const getCurrentUser = () => async (dispatch, getState) => {
   }
 
   token.set(persistedToken);
-  dispatch(changeLoading(true));
-  dispatch(changeLoading(false));
+
   try {
     const { data } = await axios.get('/users/current');
     dispatch(getCurrentUserSuccess(data));
-    dispatch(changeLoading(false));
   } catch (error) {
     dispatch(fetchError(error.message));
+  } finally {
+    dispatch(changeLoading(false));
   }
 };

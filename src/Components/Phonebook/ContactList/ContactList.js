@@ -15,7 +15,7 @@ export default function ContactList() {
 
           <Button
             className={style.button}
-            onClick={() => onDeleteContact(id)}
+            onClick={onDeleteContact(id)}
             variant="contained"
             color="primary"
             size="small"

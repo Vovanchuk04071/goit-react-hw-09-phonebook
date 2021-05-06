@@ -5,15 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import { useRegisterView } from './RegisterViewSelectors';
 
 export default function RegisterView() {
-  const {
-    name,
-    email,
-    password,
-    handleNameChange,
-    handleEmailChange,
-    handlePasswordChange,
-    handleSubmit,
-  } = useRegisterView();
+  const { name, email, password, handleChange, handleSubmit } = useRegisterView();
 
   return (
     <div>
@@ -25,7 +17,7 @@ export default function RegisterView() {
           name="name"
           autoFocus
           value={name}
-          onChange={handleNameChange}
+          onChange={handleChange}
           label="name"
           variant="outlined"
           size="small"
@@ -37,7 +29,7 @@ export default function RegisterView() {
           name="email"
           value={email}
           size="small"
-          onChange={handleEmailChange}
+          onChange={handleChange}
           label="email"
           variant="outlined"
         >
@@ -48,7 +40,7 @@ export default function RegisterView() {
           type="password"
           name="password"
           value={password}
-          onChange={handlePasswordChange}
+          onChange={handleChange}
           label="password"
           variant="outlined"
           size="small"

@@ -29,7 +29,7 @@ export const useForm = () => {
       return alert(`${name} is already in contacts!`);
     }
 
-    if ((name.length > 0) & (number.length > 0)) {
+    if (name.length > 0 && number.length > 0) {
       dispatch(addPhone({ name, number }));
       reset();
     }
@@ -43,7 +43,7 @@ export const useForm = () => {
     return contacts.find(contact => contact.name.toLowerCase() === normalaizedFilter);
   };
 
-  const handleFocus = () => setNumber('+380');
+  const handleFocusPhone = () => setNumber('+380');
 
   const reset = () => {
     setName('');
@@ -53,7 +53,7 @@ export const useForm = () => {
   return {
     handleChange,
     handleSubmit,
-    handleFocus,
+    handleFocusPhone,
     name,
     number,
   };

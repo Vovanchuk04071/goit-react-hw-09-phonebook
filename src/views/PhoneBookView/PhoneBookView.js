@@ -4,10 +4,10 @@ import style from './PhoneBookView.module.css';
 import Filter from '../../Components/Phonebook/Filter';
 import ContactList from '../../Components/Phonebook/ContactList';
 import CancelBtn from '../../Components/Phonebook/CancelBtn';
-import { usePhoneBook } from './PhoneBookViewSelectors';
+import { usePhoneBook } from './PhoneBookViewHook';
 
 export default function PhonebookView() {
-  const { isLoadingContacts } = usePhoneBook();
+  const { isLoadingContacts, clearFilter } = usePhoneBook();
 
   return (
     <div className={style.wraper}>
@@ -16,7 +16,7 @@ export default function PhonebookView() {
       <h2 className={style.titleContact}>Contacts</h2>
       {isLoadingContacts && <h2>Загружаю....</h2>}
       <Filter>
-        <CancelBtn />
+        <CancelBtn clearFilter={clearFilter} />
       </Filter>
       <ContactList />
     </div>

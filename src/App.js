@@ -17,7 +17,7 @@ export default function App() {
 
   useEffect(() => {
     dispatch(getCurrentUser());
-  }, [dispatch]);
+  }, []);
 
   return (
     <Container>

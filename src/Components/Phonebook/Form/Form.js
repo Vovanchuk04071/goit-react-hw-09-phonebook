@@ -4,7 +4,7 @@ import styles from './Form.module.css';
 import { useForm } from './FormSelectors';
 
 export default function Form() {
-  const { handleChange, handleSubmit, handleFocus, name, number } = useForm();
+  const { handleChange, handleSubmit, handleFocusPhone, name, number } = useForm();
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <label className={styles.label}>
@@ -25,7 +25,7 @@ export default function Form() {
           placeholder="Your number"
           value={number}
           name="number"
-          onFocus={handleFocus}
+          onFocus={handleFocusPhone}
           onChange={handleChange}
           className={styles.formInput}
         ></input>

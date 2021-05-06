@@ -6,23 +6,25 @@ export const useRegisterView = () => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
-
-  const handleNameChange = evt => {
-    setName(evt.target.value);
-  };
-
   const [email, setEmail] = useState('');
-
-  const handleEmailChange = evt => {
-    setEmail(evt.target.value);
-  };
-
   const [password, setPassword] = useState('');
 
-  const handlePasswordChange = evt => {
-    setPassword(evt.target.value);
+  const handleChange = ({ target }) => {
+    const { name, value } = target;
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+      case 'email':
+        setEmail(value);
+        break;
+      case 'password':
+        setPassword(value);
+        break;
+      default:
+        console.warn(`Тип поля name - ${name} не обрабатывается `);
+    }
   };
-
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -37,9 +39,7 @@ export const useRegisterView = () => {
     name,
     email,
     password,
-    handleNameChange,
-    handleEmailChange,
-    handlePasswordChange,
+    handleChange,
     handleSubmit,
   };
 };
